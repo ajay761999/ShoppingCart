@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class CartServiceTest {
-    @Test
+    /*@Test
     public void add_product_should_return_matched_product(){
         CartService cs = new CartService();
         cs.addProduct(1);
@@ -19,7 +19,23 @@ class CartServiceTest {
         cs.addProduct(3);
         cs.addProduct(4);
         cs.addProduct(4);
+
+        for (Integer item:cs.showCart().keySet()
+        ) {
+            System.out.println(Inventory.products
+                    .stream()
+                    .filter(product -> product.getBarcode().equals(item))
+                    .findFirst()
+                    .orElseThrow(
+                            () -> new RuntimeException("Product not found")
+                    ).getName()+"----"+cs.showCart().get(item)
+            );
+        }
+
         cs.removeProduct(4);
+        cs.removeProduct(4);
+        cs.removeProduct(4);
+
         //Assertions.assertEquals(Inventory.products.get(0).getBarcode(),cs.showCart().keySet().contains(1));
         for (Integer item:cs.showCart().keySet()
              ) {
@@ -32,6 +48,6 @@ class CartServiceTest {
                     ).getName()+"----"+cs.showCart().get(item)
             );
         }
-    }
+    }*/
 
 }
