@@ -18,8 +18,12 @@ class CartServiceTest {
         Product pr =  new Product(4,"Grapes", BigDecimal.valueOf(100));
         cs.addProduct(pr);
         cs.showCart();
+        System.out.println("-----");
+        cs.showInventory();
         cs.removeProduct(pr);
         cs.showCart();
+        System.out.println("-----");
+        cs.showInventory();
     }
 
 }
