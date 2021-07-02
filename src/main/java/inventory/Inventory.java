@@ -1,7 +1,10 @@
 package inventory;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Inventory {
     public static HashMap<Integer, List<Product>> products = new HashMap<>();
@@ -41,7 +44,7 @@ public class Inventory {
     public void addProductInInventory(Product product) {
         List<Product> list = products.get(product.getBarcode());
         List<Product> newlist = new ArrayList<>();
-        for (int i = 0; i < list.size() ; i++) {
+        for (int i = 0; i < list.size(); i++) {
             newlist.add(list.get(i));
         }
         newlist.add(product);
@@ -60,7 +63,7 @@ public class Inventory {
         products.replace(product.getBarcode(),
                 newlist);
         if (!list.equals(newlist)) {
-            return list.get(list.size()-1);
+            return list.get(list.size() - 1);
         } else {
             return null;
         }

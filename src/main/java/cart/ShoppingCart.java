@@ -28,7 +28,7 @@ public class ShoppingCart {
         newlist.add(product);
         cart.replace(product.getBarcode(),
                 newlist);
-        Inventory inv =new Inventory();
+        Inventory inv = new Inventory();
         inv.removeProductFromInventory(product);
     }
 
@@ -43,7 +43,7 @@ public class ShoppingCart {
         cart.replace(product.getBarcode(),
                 newlist);
         if (!list.equals(newlist)) {
-            return list.get(list.size()-1);
+            return list.get(list.size() - 1);
         } else {
             return null;
         }

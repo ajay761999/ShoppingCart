@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class InventoryTest {
     @Test
-    public void remove_product_in_inventory(){
+    public void remove_product_in_inventory() {
         Inventory inv = new Inventory();
-        Product pr =  new Product(4,"Grapes", BigDecimal.valueOf(100));
+        Product pr = new Product(4, "Grapes", BigDecimal.valueOf(100));
         Product removedProduct = inv.removeProductFromInventory(pr);
         Product removedProduct1 = inv.removeProductFromInventory(pr);
         Product removedProduct2 = inv.removeProductFromInventory(pr);
@@ -20,10 +18,11 @@ class InventoryTest {
         inv.showInventory();
         System.out.println(removedProduct3);
     }
+
     @Test
-    public void add_product_in_inventory(){
+    public void add_product_in_inventory() {
         Inventory inv = new Inventory();
-        Product pr =  new Product(4,"Grapes", BigDecimal.valueOf(100));
+        Product pr = new Product(4, "Grapes", BigDecimal.valueOf(100));
         inv.addProductInInventory(pr);
         inv.showInventory();
     }
