@@ -32,7 +32,7 @@ public class ShoppingCart {
         inv.removeProductFromInventory(product);
     }
 
-    public boolean removeFromCart(Product product) {
+    public Product removeFromCart(Product product) {
 
         List<Product> list = cart.get(product.getBarcode());
         List<Product> newlist = new ArrayList<>();
@@ -43,9 +43,9 @@ public class ShoppingCart {
         cart.replace(product.getBarcode(),
                 newlist);
         if (!list.equals(newlist)) {
-            return true;
+            return list.get(list.size()-1);
         } else {
-            return false;
+            return null;
         }
     }
 

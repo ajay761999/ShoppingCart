@@ -20,6 +20,9 @@ public class CartService {
          sc.showCart();
 
     }
+    public void showInventory(){
+        inv.showInventory();
+    }
     public void removeProduct(Product product){
 
         inv.addProductInInventory(sc.removeFromCart(product));
