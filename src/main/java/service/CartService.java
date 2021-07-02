@@ -8,24 +8,21 @@ import java.util.HashMap;
 
 public class CartService {
     private ShoppingCart sc = new ShoppingCart();
-    /*public void addProduct(Integer barcode) {
-        Product cart_add = Inventory.products.stream()
-                .filter(product -> product.getBarcode().equals(barcode))
-                .findFirst()
-                .orElseThrow(
-                        () -> new RuntimeException("Product not found")
-                );
+    private Inventory inv = new Inventory();
+    public void addProduct(Product product) {
 
-        sc.addIntoCart(cart_add.getBarcode());
+
+        sc.addIntoCart(inv.removeProductFromInventory(product));
 
         //return cart_add;
     }
-    public HashMap<Integer,Integer> showCart(){
-        return sc.showCart();
-    }
-    public void removeProduct(Integer barcode){
+    public void showCart(){
+         sc.showCart();
 
-        sc.removeFromCart(barcode);
     }
-*/
+    public void removeProduct(Product product){
+
+        inv.addProductInInventory(sc.removeFromCart(product));
+    }
+
 }
