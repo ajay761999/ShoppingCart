@@ -60,7 +60,7 @@ public class Inventory {
         products.replace(product.getBarcode(),
                 newlist);
         if (!list.equals(newlist)) {
-            return product;
+            return list.get(list.size()-1);
         } else {
             return null;
         }

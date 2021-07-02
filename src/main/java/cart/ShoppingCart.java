@@ -1,38 +1,58 @@
 package cart;
 
+import inventory.Inventory;
+import inventory.Product;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class ShoppingCart {
-    private HashMap<Integer, Integer> cart = new HashMap<>();
+    private static HashMap<Integer, List<Product>> cart = new HashMap<>();
 
-    public void addIntoCart(Integer barcode) {
+    {
+        cart.put(1, Arrays.asList());
+        cart.put(2, Arrays.asList());
+        cart.put(3, Arrays.asList());
+        cart.put(4, Arrays.asList());
 
-        if (!cart.containsKey(barcode)) {
-            cart.put(barcode, 1);
-        } else {
-            Integer itemQuantity;
-            itemQuantity = cart.get(barcode);
-            cart.replace(barcode, itemQuantity, itemQuantity + 1);
-        }
     }
 
-    public boolean removeFromCart(Integer barcode) {
-        if (!cart.containsKey(barcode)) {
+    public void addIntoCart(Product product) {
+        List<Product> list = cart.get(product.getBarcode());
+        List<Product> newlist = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            newlist.add(list.get(i));
+        }
+        newlist.add(product);
+        cart.replace(product.getBarcode(),
+                newlist);
+        Inventory inv =new Inventory();
+        inv.removeProductFromInventory(product);
+    }
+
+    public boolean removeFromCart(Product product) {
+
+        List<Product> list = cart.get(product.getBarcode());
+        List<Product> newlist = new ArrayList<>();
+        for (int i = 0; i < list.size() - 1; i++) {
+            newlist.add(list.get(i));
+        }
+
+        cart.replace(product.getBarcode(),
+                newlist);
+        if (!list.equals(newlist)) {
+            return true;
+        } else {
             return false;
-        } else {
-            if (cart.get(barcode) == 1) {
-                cart.remove(barcode);
-                return true;
-            } else if (cart.get(barcode) > 1) {
-                Integer quantity = cart.get(barcode);
-                cart.replace(barcode, quantity, quantity - 1);
-                return true;
-            }
         }
-        return false;
     }
 
-    public HashMap<Integer, Integer> showCart() {
-        return cart;
+    public void showCart() {
+        for (Integer k : cart.keySet()
+        ) {
+            System.out.println(k + "=" + cart.get(k).size());
+        }
     }
 }
