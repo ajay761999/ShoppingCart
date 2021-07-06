@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Inventory {
+    public HashMap<Integer, List<Product>> getProducts() {
+        return products;
+    }
+
     public static HashMap<Integer, List<Product>> products = new HashMap<>();
 
     {
@@ -42,31 +46,36 @@ public class Inventory {
     }
 
     public void addProductInInventory(Product product) {
-        List<Product> list = products.get(product.getBarcode());
-        List<Product> newlist = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            newlist.add(list.get(i));
-        }
-        newlist.add(product);
-        products.replace(product.getBarcode(),
-                newlist);
+        if (product != null) {
+            List<Product> list = products.get(product.getBarcode());
+            List<Product> newlist = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                newlist.add(list.get(i));
+            }
+            newlist.add(product);
+            products.replace(product.getBarcode(),
+                    newlist);
+        } else throw new RuntimeException("No Product given");
     }
 
     public Product removeProductFromInventory(Product product) {
 
         List<Product> list = products.get(product.getBarcode());
-        List<Product> newlist = new ArrayList<>();
-        for (int i = 0; i < list.size() - 1; i++) {
-            newlist.add(list.get(i));
-        }
+        if (product != null) {
+            List<Product> newlist = new ArrayList<>();
+            for (int i = 0; i < list.size() - 1; i++) {
+                newlist.add(list.get(i));
+            }
 
-        products.replace(product.getBarcode(),
-                newlist);
-        if (!list.equals(newlist)) {
-            return list.get(list.size() - 1);
-        } else {
-            return null;
-        }
+            products.replace(product.getBarcode(),
+                    newlist);
+            if (!list.equals(newlist)) {
+                return list.get(list.size() - 1);
+            } else {
+                throw new RuntimeException("No Products in Inventory");
+            }
+        } else
+            throw new RuntimeException("No Product Given");
     }
 
     public void showInventory() {
